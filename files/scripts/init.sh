@@ -17,11 +17,11 @@ cd $DATA_PATH || exit
 echo "$(date '+%Y-%m-%d %H:%m') INIT     Setting permissions on files/folders inside container"
 if [ -n "${PUID}" ] && [ -n "${PGID}" ]; then
   if [ -z "$(getent group "${PGID}")" ]; then
-    groupadd -g "${PGID}" flexget
+    addgroup -g "${PGID}" flexget
   fi
 
   if [ -z "$(getent passwd "${PUID}")" ]; then
-    useradd -M -s /bin/sh -u "${PUID}" -g "${PGID}" flexget
+    adduser -D -s /bin/sh -u "${PUID}" -G flexget flexget
   fi
 
   flex_user=$(getent passwd "${PUID}" | cut -d: -f1)
