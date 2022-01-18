@@ -4,15 +4,16 @@ MAINTAINER mool
 ENV VERSION=3.2.9
 
 RUN apk add --no-cache \
-      build-base \
       ca-certificates \
       ffmpeg \
+      tzdata \
+      python3 && \
+    apk add --no-cache --virtual .build-deps \
+      build-base \
       linux-headers \
       gcc \
       make \
       musl-dev \
-      tzdata \
-      python3 \
       python3-dev && \
     python3 -m ensurepip --upgrade && \
     pip3 install --no-cache-dir \
@@ -20,6 +21,7 @@ RUN apk add --no-cache \
       transmissionrpc && \
     pip3 install --no-cache-dir --upgrade --force-reinstall \
       flexget==$VERSION && \
+    apk del --no-network .build-deps && \
     rm -rf \
       /root/.cache \
       /tmp/* \
