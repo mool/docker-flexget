@@ -1,15 +1,20 @@
-FROM alpine:3.10
+FROM alpine:3.15
 MAINTAINER mool
 
 ENV VERSION=3.2.9
 
 RUN apk add --no-cache \
+      build-base \
       ca-certificates \
       ffmpeg \
+      linux-headers \
+      gcc \
+      make \
+      musl-dev \
       tzdata \
       python3 \
-      py3-cryptography && \
-    pip3 install --no-cache-dir --upgrade pip setuptools && \
+      python3-dev && \
+    python3 -m ensurepip --upgrade && \
     pip3 install --no-cache-dir \
       python-telegram-bot \
       transmissionrpc && \
