@@ -1,6 +1,8 @@
 FROM alpine:3.10
 MAINTAINER mool
 
+ENV VERSION=3.2.9
+
 RUN apk add --no-cache \
       ca-certificates \
       ffmpeg \
@@ -12,7 +14,7 @@ RUN apk add --no-cache \
       python-telegram-bot \
       transmissionrpc && \
     pip3 install --no-cache-dir --upgrade --force-reinstall \
-      flexget==2.21.35 && \
+      flexget==$VERSION && \
     rm -rf \
       /root/.cache \
       /tmp/* \
