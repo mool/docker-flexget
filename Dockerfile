@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.16
 MAINTAINER mool
 
 ENV VERSION=3.2.9
@@ -6,8 +6,10 @@ ENV VERSION=3.2.9
 RUN apk add --no-cache \
       ca-certificates \
       ffmpeg \
-      tzdata \
-      python3 && \
+      tzdata && \
+    apk add --no-cache \
+      python3 \
+      py3-libtorrent-rasterbar && \
     apk add --no-cache --virtual .build-deps \
       build-base \
       linux-headers \
