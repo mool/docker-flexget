@@ -20,6 +20,7 @@ RUN apk add --no-cache \
     python3 -m ensurepip --upgrade && \
     pip3 install --no-cache-dir \
       python-telegram-bot==12.8 \
+      subliminal \
       transmission-rpc && \
     pip3 install --no-cache-dir --upgrade --force-reinstall \
       flexget==$VERSION && \
